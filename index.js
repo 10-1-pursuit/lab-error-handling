@@ -42,37 +42,52 @@ function getCartTotal(cart) {
 */
 function filterProductsByPriceRange(products, min, max) {
 
-  try {
-    if (!products.hasOwnProperty("priceInCents")) {
-      if (products.length === 0) {
-        if (min = "NaN" || max = "NaN") {
 
-        }
-      }
-    } catch (error) {
-      console.log("Error! Missing priceInCents key")
-      console.log("Error! Products Array is empty")
-      console.log("")
-    }
-
+  if (products.length === 0) {
+    throw ("Error! Min and Max values are not numbers")
   }
+  if (typeof min !== "number" || typeof max !== "number") {
+    throw ("Error! Products Array is empty")
+  }
+  if (min > max) {
+    throw ("Error! Min value is greater than Max Value")
+  }
+  if (max === 0) {
+    throw ("Error! Min value is equal to '0' ")
+  }
+  if (min < 0 || max < 0) {
+    throw ("Error! Min or Max is less than '0' ")
+  }
+
   const result = [];
   for (let product of products) {
+    if (typeof product.priceInCents !== "number") {
+      throw ("Product is missing key 'priceInCents'")
+    }
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
     }
   }
+  console.log(result)
   return result;
 }
+
+
 
 /*
   If any errors occur in this function, it should return `0`.
 */
-function getTotalOfAllProductsByPriceRange(products, min, max) {
-  const filteredProducts = filterProductsByPriceRange(products, min, max);
-  const total = getCartTotal(filteredProducts);
 
-  return total;
+function getTotalOfAllProductsByPriceRange(products, min, max) {
+
+  try {
+    const filteredProducts = filterProductsByPriceRange(products, min, max);
+    const total = getCartTotal(filteredProducts);
+    return total;
+
+  } catch (error) {
+    return 0;
+  }
 }
 
 module.exports = {
