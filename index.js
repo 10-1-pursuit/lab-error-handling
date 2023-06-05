@@ -63,7 +63,7 @@ function filterProductsByPriceRange(products, min, max) {
   for (let product of products) {
     if (typeof product.priceInCents !== "number") {
       throw ("Product is missing key 'priceInCents'")
-    }
+    } https://media.discordapp.net/attachments/1090826960495706225/1114290787019133109/Screenshot_2023-06-02_at_4.32.53_PM.png?width=878&height=533
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
     }
