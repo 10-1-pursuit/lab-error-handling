@@ -10,7 +10,7 @@ const exampleProducts = [
   { id: 2, name: "Low Profile Sleigh Bed", priceInCents: 22999 },
   { id: 3, name: "Oval 100% Cotton Solid Bath Rug", priceInCents: 1399 },
   { id: 4, name: "Abstract Light Gray Area Rug", priceInCents: 33999 },
-  { id: 5, name: "Multi Game Table", priceInCents: 81743 },
+  { id: 5, name: "Multi Game Table", priceInCents: 81743 }
 ];
 // Do not change the line above.
 
@@ -20,12 +20,18 @@ const exampleProducts = [
 */
 function getCartTotal(cart) {
   let result = 0;
+
+  if (cart.length === 0) {
+    throw new Error("The cart is empty");
+  }
+
   for (let product of cart) {
     result += product.priceInCents;
   }
   return result;
 }
-
+//console.log(getCartTotal(exampleProducts));
+//👍🏽 COMPLETE
 /*
   This function should throw an error if:
   - The `products` array is empty.
@@ -58,5 +64,5 @@ function getTotalOfAllProductsByPriceRange(products, min, max) {
 module.exports = {
   getCartTotal,
   filterProductsByPriceRange,
-  getTotalOfAllProductsByPriceRange,
+  getTotalOfAllProductsByPriceRange
 };
