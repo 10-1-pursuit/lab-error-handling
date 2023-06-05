@@ -8,7 +8,7 @@
     "watch": "jest --watch-all"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Kleemoff",
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.0.6"
