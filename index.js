@@ -13,18 +13,21 @@ const exampleProducts = [
   { id: 5, name: "Multi Game Table", priceInCents: 81743 },
 ];
 // Do not change the line above.
-
+let inspect = console.log
 /*
   This function should throw an error if:
   - The `cart` array is empty.
 */
 function getCartTotal(cart) {
   let result = 0;
+  if(cart.length === 0) throw "Your Cart is Empty"
   for (let product of cart) {
     result += product.priceInCents;
   }
   return result;
 }
+
+
 
 /*
   This function should throw an error if:
@@ -37,22 +40,37 @@ function getCartTotal(cart) {
 */
 function filterProductsByPriceRange(products, min, max) {
   const result = [];
+  if ((min || max) < 0) throw "Must be a value"
+  if (typeof min !== "number" || typeof max !== "number") throw "I'm not a number"
+  if (min > max) throw "Error with Entries"
+  if (max === 0) throw "You need more Monies Yo!"
+  if (products.length === 0) throw "Error with Cart"
+
   for (let product of products) {
+    if (typeof product.priceInCents !== "number") {
+      throw "does not have a `priceInCents` key."
+    };
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
-    }
-  }
+      console.log(result)
+    };
+  };
+
   return result;
-}
+};
 
 /*
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
+  try {
   const filteredProducts = filterProductsByPriceRange(products, min, max);
   const total = getCartTotal(filteredProducts);
-
   return total;
+
+  } catch (error) {
+    return 0
+  }
 }
 
 module.exports = {
