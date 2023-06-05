@@ -20,11 +20,16 @@ const exampleProducts = [
 */
 function getCartTotal(cart) {
   let result = 0;
+
+  if (cart.length === 0) {
+    throw ("Error!", "Cart is empty")
+  }
   for (let product of cart) {
     result += product.priceInCents;
   }
   return result;
 }
+
 
 /*
   This function should throw an error if:
@@ -36,6 +41,21 @@ function getCartTotal(cart) {
   - Any of the products in the `products` array does not have a `priceInCents` key.
 */
 function filterProductsByPriceRange(products, min, max) {
+
+  try {
+    if (!products.hasOwnProperty("priceInCents")) {
+      if (products.length === 0) {
+        if (min = "NaN" || max = "NaN") {
+
+        }
+      }
+    } catch (error) {
+      console.log("Error! Missing priceInCents key")
+      console.log("Error! Products Array is empty")
+      console.log("")
+    }
+
+  }
   const result = [];
   for (let product of products) {
     if (product.priceInCents >= min && product.priceInCents <= max) {
