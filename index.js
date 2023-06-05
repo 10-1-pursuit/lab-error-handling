@@ -22,7 +22,7 @@ function getCartTotal(cart) {
   let result = 0;
 
   if (cart.length === 0) {
-    throw ("Error", "Cart is empty")
+    throw ("Error", "Cart is empty"); // if cart length is 0 that means empty array and throw an error
   }
   for (let product of cart) {
     result += product.priceInCents;
@@ -40,8 +40,23 @@ function getCartTotal(cart) {
   - Any of the products in the `products` array does not have a `priceInCents` key.
 */
 function filterProductsByPriceRange(products, min, max) {
+  if (!Array.isArray(products) || products.length === 0) {
+    throw "The products array is empty."; // Throw an error if the products array is empty or if not an array of products
+  }
+  if (typeof min !== "number" || typeof max !== "number") {
+    throw "Either min or max is not a number."; // Throw an error if either min or max is not a number
+  }
+  if (max === 0) {
+    throw "max cannot be equal to 0."; // Throw an error if max is equal to 0
+  }
+  if (min < 0 || max < 0) {
+    throw "min and max must be greater than or equal to 0."; // Throw an error if min or max is less than 0
+  }
   const result = [];
   for (let product of products) {
+    if (typeof product.priceInCents !== "number") {
+      throw "One or more products do not have a priceInCents key."; // Throw an error if a product does not have a priceInCents key
+    }
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
     }
@@ -53,10 +68,13 @@ function filterProductsByPriceRange(products, min, max) {
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
-  const filteredProducts = filterProductsByPriceRange(products, min, max);
-  const total = getCartTotal(filteredProducts);
-
-  return total;
+  try {
+    const filteredProducts = filterProductsByPriceRange(products, min, max);
+    const total = getCartTotal(filteredProducts);
+    return total;
+  } catch (error) {
+    return 0; // Return 0 if any error occurs during the process
+  }
 }
 
 module.exports = {
