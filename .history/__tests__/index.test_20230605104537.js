@@ -1,7 +1,7 @@
 const {
   getCartTotal,
   filterProductsByPriceRange,
-  getTotalOfAllProductsByPriceRange
+  getTotalOfAllProductsByPriceRange,
 } = require("../");
 
 const products = [
@@ -9,7 +9,7 @@ const products = [
   { id: 2, name: "Low Profile Sleigh Bed", priceInCents: 22999 },
   { id: 3, name: "Oval 100% Cotton Solid Bath Rug", priceInCents: 1399 },
   { id: 4, name: "Abstract Light Gray Area Rug", priceInCents: 33999 },
-  { id: 5, name: "Multi Game Table", priceInCents: 81743 }
+  { id: 5, name: "Multi Game Table", priceInCents: 81743 },
 ];
 
 describe("getCartTotal()", () => {
@@ -31,7 +31,7 @@ describe("filterProductsByPriceRange()", () => {
     const actual = filterProductsByPriceRange(products, min, max);
     const expected = [
       products[0], // Panel Headboard
-      products[1] // Low Profile Sleigh Bed
+      products[1], // Low Profile Sleigh Bed
     ];
 
     expect(actual).toEqual(expected);

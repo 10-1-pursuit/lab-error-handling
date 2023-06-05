@@ -19,7 +19,7 @@ describe("getCartTotal()", () => {
     expect(actual).toEqual(expected);
   });
 
-  test("should throw an error if the cart is empty", () => {
+  test.only("should throw an error if the cart is empty", () => {
     expect(() => getCartTotal([])).toThrow();
   });
 });
