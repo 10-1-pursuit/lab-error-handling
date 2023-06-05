@@ -6,11 +6,11 @@
   Keep in mind that your functions must still have and use a parameter for accepting all songs.
 */
 const exampleProducts = [
-  { id: 1, name: "Panel Headboard", priceInCents: 12332 },
-  { id: 2, name: "Low Profile Sleigh Bed", priceInCents: 22999 },
-  { id: 3, name: "Oval 100% Cotton Solid Bath Rug", priceInCents: 1399 },
-  { id: 4, name: "Abstract Light Gray Area Rug", priceInCents: 33999 },
-  { id: 5, name: "Multi Game Table", priceInCents: 81743 },
+	{ id: 1, name: 'Panel Headboard', priceInCents: 12332 },
+	{ id: 2, name: 'Low Profile Sleigh Bed', priceInCents: 22999 },
+	{ id: 3, name: 'Oval 100% Cotton Solid Bath Rug', priceInCents: 1399 },
+	{ id: 4, name: 'Abstract Light Gray Area Rug', priceInCents: 33999 },
+	{ id: 5, name: 'Multi Game Table', priceInCents: 81743 },
 ];
 // Do not change the line above.
 
@@ -19,13 +19,17 @@ const exampleProducts = [
   - The `cart` array is empty.
 */
 function getCartTotal(cart) {
-  let result = 0;
-  for (let product of cart) {
-    result += product.priceInCents;
-  }
-  return result;
-}
+	if (cart.length < 1) {
+		throw 'The cart is empty!';
+	}
 
+	let result = 0;
+	for (let product of cart) {
+		result += product.priceInCents;
+	}
+	return result;
+}
+console.log(getCartTotal([]));
 /*
   This function should throw an error if:
   - The `products` array is empty.
@@ -36,27 +40,27 @@ function getCartTotal(cart) {
   - Any of the products in the `products` array does not have a `priceInCents` key.
 */
 function filterProductsByPriceRange(products, min, max) {
-  const result = [];
-  for (let product of products) {
-    if (product.priceInCents >= min && product.priceInCents <= max) {
-      result.push(product);
-    }
-  }
-  return result;
+	const result = [];
+	for (let product of products) {
+		if (product.priceInCents >= min && product.priceInCents <= max) {
+			result.push(product);
+		}
+	}
+	return result;
 }
 
 /*
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
-  const filteredProducts = filterProductsByPriceRange(products, min, max);
-  const total = getCartTotal(filteredProducts);
+	const filteredProducts = filterProductsByPriceRange(products, min, max);
+	const total = getCartTotal(filteredProducts);
 
-  return total;
+	return total;
 }
 
 module.exports = {
-  getCartTotal,
-  filterProductsByPriceRange,
-  getTotalOfAllProductsByPriceRange,
+	getCartTotal,
+	filterProductsByPriceRange,
+	getTotalOfAllProductsByPriceRange,
 };
