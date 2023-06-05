@@ -12,6 +12,7 @@ const exampleProducts = [
   { id: 4, name: "Abstract Light Gray Area Rug", priceInCents: 33999 },
   { id: 5, name: "Multi Game Table", priceInCents: 81743 },
 ];
+
 // Do not change the line above.
 
 /*
@@ -19,6 +20,10 @@ const exampleProducts = [
   - The `cart` array is empty.
 */
 function getCartTotal(cart) {
+  if (cart.length === 0) {
+    throw new Error("Cart is empty.");
+  }
+
   let result = 0;
   for (let product of cart) {
     result += product.priceInCents;
@@ -36,8 +41,34 @@ function getCartTotal(cart) {
   - Any of the products in the `products` array does not have a `priceInCents` key.
 */
 function filterProductsByPriceRange(products, min, max) {
+  //✅ if the 'products' array is empty 🪫
+  if (products.length === 0) {
+    throw new Error("The 'products' array is empty");
+  }
+  // ✅ if 'min' or 'max' is not a number 🔢
+  if (typeof min !== 'number' || typeof max !== 'number') {
+    throw new Error("Either `min` or `max` is not a number.");
+  }
+  // ✅ if 'max' is equal to zero 
+  if (max === 0) {
+    throw new Error(" 'max' cannot be equal to 0.");
+  }
+  //✅ if 'min' is greater than 'max'
+  if (min > max) {
+    throw new Error(" 'min' or `max` is less than `0`");
+  }
+  //✅ if the 'min' or 'max' is less than 0
+  if (min < 0 || max < 0) {
+    throw new Error("Either 'min' or 'max' is less than 0.");
+  }
+
+
   const result = [];
   for (let product of products) {
+    // ✅ if the current product does not have a 'priceInCents' key
+    if (!product.hasOwnProperty('priceInCents')) {
+      throw new Error("A product  does not have a 'priceInCents' key.");
+    }
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
     }
@@ -45,14 +76,30 @@ function filterProductsByPriceRange(products, min, max) {
   return result;
 }
 
+
 /*
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
-  const filteredProducts = filterProductsByPriceRange(products, min, max);
-  const total = getCartTotal(filteredProducts);
+  //UPDATED HERE ⬇️
+  try {
+    if (products.length === 0) {
+      throw new Error("The 'products' array is empty.");
+    }
 
-  return total;
+
+    const filteredProducts = filterProductsByPriceRange(products, min, max);
+
+    //UPDATED HERE ⬇️
+    if (filterProductsByPriceRange.length === 0) {
+      return 0; // No products fit within the price range 
+    }
+    const total = getCartTotal(filteredProducts);
+    return total;
+  } catch (error) {
+    console.error(error); // UPDATED ✨
+    return 0;// UPDATED ✨
+  }
 }
 
 module.exports = {
