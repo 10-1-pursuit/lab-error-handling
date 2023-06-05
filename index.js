@@ -81,10 +81,25 @@ function filterProductsByPriceRange(products, min, max) {
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
-  const filteredProducts = filterProductsByPriceRange(products, min, max);
-  const total = getCartTotal(filteredProducts);
+  //UPDATED HERE ⬇️
+  try {
+    if (products.length === 0) {
+      throw new Error("The 'products' array is empty.");
+    }
 
-  return total;
+
+    const filteredProducts = filterProductsByPriceRange(products, min, max);
+
+    //UPDATED HERE ⬇️
+    if (filterProductsByPriceRange.length === 0) {
+      return 0; // No products fit within the price range 
+    }
+    const total = getCartTotal(filteredProducts);
+    return total;
+  } catch (error) {
+    console.error(error); // UPDATED ✨
+    return 0;// UPDATED ✨
+  }
 }
 
 module.exports = {
