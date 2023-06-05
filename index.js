@@ -12,6 +12,7 @@ const exampleProducts = [
   { id: 4, name: "Abstract Light Gray Area Rug", priceInCents: 33999 },
   { id: 5, name: "Multi Game Table", priceInCents: 81743 },
 ];
+
 // Do not change the line above.
 
 /*
@@ -19,6 +20,10 @@ const exampleProducts = [
   - The `cart` array is empty.
 */
 function getCartTotal(cart) {
+  if (cart.length === 0) {
+    throw new Error("Cart is empty.");
+  }
+
   let result = 0;
   for (let product of cart) {
     result += product.priceInCents;
