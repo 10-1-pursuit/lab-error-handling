@@ -62,7 +62,7 @@ function filterProductsByPriceRange(products, min, max) {
   return result;
 }
 //console.log(filterProductsByPriceRange)
-//👍🏽 COMPLETE
+
 /*
   If any errors occur in this function, it should return `0`.
 */
