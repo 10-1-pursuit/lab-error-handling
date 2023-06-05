@@ -75,7 +75,7 @@ function getTotalOfAllProductsByPriceRange(products, min, max) {
     return 0;
   }
 }
-//👍🏽 COMPLETE
+
 module.exports = {
   getCartTotal,
   filterProductsByPriceRange,
