@@ -71,15 +71,16 @@ function filterProductsByPriceRange(products, min, max) {
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
 
+  
+
+try{
+
   const filteredProducts = filterProductsByPriceRange(products, min, max);
   const total = getCartTotal(filteredProducts);
   return total;
-  console.log(filteredProducts)
-try{
-
 
 }catch(error){
-  throw `0`
+return 0
 }
 
 
