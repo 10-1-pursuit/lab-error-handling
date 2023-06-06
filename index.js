@@ -29,7 +29,7 @@ function getCartTotal(cart) {
 	}
 	return result;
 }
-console.log(getCartTotal([]));
+
 /*
   This function should throw an error if:
   - The `products` array is empty.
@@ -41,6 +41,13 @@ console.log(getCartTotal([]));
 */
 function filterProductsByPriceRange(products, min, max) {
 	const result = [];
+
+	if (products.length < 1) {
+		throw new Error(`The products array is empty`);
+	} else if (typeof min !== 'number' || typeof max !== 'number') {
+		throw new Error(`Value is not a number`);
+	}
+
 	for (let product of products) {
 		if (product.priceInCents >= min && product.priceInCents <= max) {
 			result.push(product);
@@ -48,7 +55,7 @@ function filterProductsByPriceRange(products, min, max) {
 	}
 	return result;
 }
-
+console.log(filterProductsByPriceRange(exampleProducts, 10000, 30000));
 /*
   If any errors occur in this function, it should return `0`.
 */
