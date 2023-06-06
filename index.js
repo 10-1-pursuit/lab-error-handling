@@ -46,6 +46,14 @@ function filterProductsByPriceRange(products, min, max) {
 		throw new Error(`The products array is empty`);
 	} else if (typeof min !== 'number' || typeof max !== 'number') {
 		throw new Error(`Value is not a number`);
+	} else if (min < 0 || max < 0) {
+		throw new Error(`Value is less than 0`);
+	} else if (max === 0) {
+		throw new Error(`Max is equal to zero`);
+	} else if (
+		!products.every((product) => product.hasOwnProperty('priceInCents'))
+	) {
+		throw new Error(`'priceInCents' key is missing`);
 	}
 
 	for (let product of products) {
@@ -55,6 +63,9 @@ function filterProductsByPriceRange(products, min, max) {
 	}
 	return result;
 }
+console.log(
+	exampleProducts.every((product) => product.hasOwnProperty('priceInCents'))
+);
 console.log(filterProductsByPriceRange(exampleProducts, 10000, 30000));
 /*
   If any errors occur in this function, it should return `0`.
