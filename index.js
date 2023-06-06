@@ -20,11 +20,22 @@ const exampleProducts = [
 */
 function getCartTotal(cart) {
   let result = 0;
+  if (cart.length === 0) {
+    throw "The cart is empty"
+  }
   for (let product of cart) {
     result += product.priceInCents;
   }
   return result;
 }
+
+// const emptyCart = [];
+
+// try {
+//   getCartTotal(emptyCart)
+// } catch (error) {
+//   console.log(error)
+// }
 
 /*
   This function should throw an error if:
@@ -37,6 +48,21 @@ function getCartTotal(cart) {
 */
 function filterProductsByPriceRange(products, min, max) {
   const result = [];
+  if (products.length === 0) {
+    throw "Products array is empty"
+  }
+  if (typeof min !== Number || typeof max !== Number) {
+    throw "min and max should be numbers"
+  }
+  if (max === 0) {
+    throw "max should not equal 0"
+  }
+  if (min > max) {
+    throw "min should not be greater than max"
+  }
+  if (min < 0 || max < 0) {
+    throw "min and max should not be less than 0"
+  }
   for (let product of products) {
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
