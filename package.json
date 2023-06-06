@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "watch": "jest --watch-all"
+    "watch": "jest --watch-all",
+		"start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Kleemoff",
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.0.6"
