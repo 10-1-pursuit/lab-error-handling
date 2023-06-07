@@ -23,6 +23,9 @@ function getCartTotal(cart) {
   for (let product of cart) {
     result += product.priceInCents;
   }
+   if (!result) {
+    throw "Error! Cart is not found!";
+  }
   return result;
 }
 
@@ -41,6 +44,13 @@ function filterProductsByPriceRange(products, min, max) {
     if (product.priceInCents >= min && product.priceInCents <= max) {
       result.push(product);
     }
+      // if (!product.priceInCents) {
+    //   throw "cannot find price of product - Did you miss something?"
+    // }
+  }
+  if (min || max <= 0) {
+    throw "error"
+  
   }
   return result;
 }
