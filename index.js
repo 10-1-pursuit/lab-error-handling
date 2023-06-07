@@ -19,13 +19,23 @@ const exampleProducts = [
   - The `cart` array is empty.
 */
 function getCartTotal(cart) {
+  
   let result = 0;
   for (let product of cart) {
     result += product.priceInCents;
   }
-  return result;
+if(!result){
+  throw" Cart is empty"
 }
-
+return result;
+}
+// try {
+//   result = getCartTotal([]);
+//   throw new ReferenceError()
+// } catch (error) {
+//   //console.log("An error occurred!");
+//   console.log(error)
+// }
 /*
   This function should throw an error if:
   - The `products` array is empty.
@@ -42,8 +52,13 @@ function filterProductsByPriceRange(products, min, max) {
       result.push(product);
     }
   }
+  if(!product){
+    throw" Cart is empty"
+  }
   return result;
-}
+  }
+  
+
 
 /*
   If any errors occur in this function, it should return `0`.
