@@ -71,7 +71,15 @@ function filterProductsByPriceRange(products, min, max) {
   If any errors occur in this function, it should return `0`.
 */
 function getTotalOfAllProductsByPriceRange(products, min, max) {
+  try{
+    let attempt = filterProductsByPriceRange(products, min, max);
+  }catch(error){
+    return 0;
+  }
   const filteredProducts = filterProductsByPriceRange(products, min, max);
+  if(filteredProducts.length === 0){
+    return 0;
+  }
   const total = getCartTotal(filteredProducts);
 
   return total;
